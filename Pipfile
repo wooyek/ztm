@@ -1,0 +1,41 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+mock = "*"
+pytest = "==3.1.3"
+pytest-xdist = "*"
+pytest-html = "*"
+pytest-sugar = "*"
+pytest-cov = "*"
+psycopg2 = "*"
+pathlib = "*"
+enum34 = "*"
+ztm = {editable = true,file = "file:///data/work/wooyek/ztm"}
+bump2version = "*"
+check-manifest = "*"
+codecov = "*"
+coverage = "*"
+detox = "*"
+flake8 = "*"
+isort = "*"
+tox = "*"
+docutils = "==0.13.1"
+sphinxcontrib-spelling = "*"
+pyenchant = "*"
+factory_boy = "*"
+Pygments = "*"
+readme_renderer = "*"
+Sphinx = ">=1.6.5"
+sphinx_rtd_theme = "*"
+
+[packages]
+click = "*"
+enum34 = "*"
+pathlib = "*"
+requests = "*"
+
+[requires]
+python_version = "3.6"
