@@ -97,7 +97,7 @@ setup(
     exclude_package_data={
         '': ['test*.py', 'tests/*.env', '**/tests.py'],
     },
-    python_requires='>=2.7',
+    python_requires='>=3.5',
     install_requires=install_requires,
     extras_require={
         'factories': ['factory-boy'],
@@ -110,10 +110,6 @@ setup(
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Natural Language :: English',
-        "Programming Language :: Python :: 2",
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
