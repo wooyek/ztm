@@ -44,7 +44,7 @@ Fetch data from ZTM API
 Features
 --------
 
-* Pending :D
+* Fetch GPS position and append to CSV file
 
 
 

@@ -31,11 +31,14 @@ with open('HISTORY.rst') as history_file:
 
 def requirements(path):
     items = parse_requirements(path, session=uuid.uuid1())
-    return [";".join((str(r.req), str(r.markers))) if r.markers else str(r.req) for r in items]
+    items = [";".join((str(r.req), str(r.markers))) if r.markers else str(r.req) for r in items]
+    import pprint
+    pprint.pprint(items)
+    return items
 
 
 tests_require = requirements(os.path.join(os.path.dirname(__file__), "requirements", "testing.txt"))
-install_requires = requirements(os.path.join(os.path.dirname(__file__), "requirements", "production.txt"))
+install_requires = requirements(os.path.join(os.path.dirname(__file__), "requirements", "lock", "production.txt"))
 
 
 def get_version(*file_paths):
