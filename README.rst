@@ -60,15 +60,19 @@ Install ZTM api wrapper::
 Running Tests
 -------------
 
-Does the code actually work?
+Does the code actually work?::
 
-::
-    $ pipenv install --dev
-    $ pipenv shell
+    $ git clone https://github.com/wooyek/ztm.git
+    $ cd ztm
+    $ curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python
+    $ pipsi install pew
+    $ pew new -p python3 -a $(pwd) $(pwd | xargs basename)
+    $ pip install -r requirements/development.txt
+    $ pipsi install tox
     $ tox
 
 
-We recommend using pipenv_ but a legacy approach to creating virtualenv and installing requirements should also work.
+We recommend using pipsi_ for installing pew_ and tox_ but a legacy approach to creating virtualenv and installing requirements should also work.
 Please install `requirements/development.txt` to setup virtual env for testing and development.
 
 
@@ -79,4 +83,6 @@ This package was created with Cookiecutter_ and the `wooyek/cookiecutter-pylib`_
 
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`wooyek/cookiecutter-pylib`: https://github.com/wooyek/cookiecutter-pylib
-.. _`pipenv`: https://docs.pipenv.org/install
+.. _`pipsi`: https://github.com/mitsuhiko/pipsi
+.. _`pew`: https://github.com/berdario/pew
+.. _`tox`: https://tox.readthedocs.io/en/latest/
