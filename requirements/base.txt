@@ -7,3 +7,4 @@ click
 enum34 ; python_version < '3.4'
 pathlib ; python_version < '3.3'
 requests
+ratelimit

@@ -38,8 +38,6 @@ Fetch data from ZTM API
         :target: https://saythanks.io/to/wooyek
 
 
-* Free software: MIT license
-* Documentation: https://ztm.readthedocs.io.
 
 Features
 --------
@@ -51,10 +49,13 @@ Features
 Quickstart
 ----------
 
-Install ZTM api wrapper::
+Install and run ZTM api wrapper::
 
-    pip install ztm
 
+    $ curl https://raw.githubusercontent.com/mitsuhiko/pipsi/master/get-pipsi.py | python
+    $ pipsi install ztm
+    $ ztm --apikey <APIKEY> fetch --line 150 --line 250
+    $ cat ztm.csv
 
 
 Running Tests
