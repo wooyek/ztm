@@ -97,7 +97,7 @@ setup(
     exclude_package_data={
         '': ['test*.py', 'tests/*.env', '**/tests.py'],
     },
-    python_requires='>=3.5',
+    python_requires='>=3.4',
     install_requires=install_requires,
     extras_require={
         'factories': ['factory-boy'],
