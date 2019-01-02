@@ -22,12 +22,14 @@ log = logging.getLogger(__name__)
 
 @click.group()
 @click.option('--apikey', default=None)
-@click.option('--continuous/--once', default=False, )
+@click.option('--sleep', default=10, help='Number of seconds to sleep between fetches')
+@click.option('--continuous/--once', default=False, help='Fetch data in a loop')
 @click.pass_context
-def main(ctx, apikey, continuous):
+def main(ctx, apikey, continuous, sleep):
     ctx.ensure_object(dict)
     ctx.obj['APIKEY'] = apikey or os.environ.get('APIKEY', default=None)
     ctx.obj['continuous'] = continuous
+    ctx.obj['sleep'] = sleep
 
 
 @main.command()
@@ -39,7 +41,7 @@ def fetch(ctx, line):
         _fetch_data(ctx, line)
         if not ctx.obj['continuous']:
             break
-        time.sleep(5)
+        time.sleep(ctx.obj['sleep'])
 
 
 @on_exception(expo, RateLimitException, max_tries=8)
@@ -68,7 +70,7 @@ def append_data(data):
     data_file_exists = path.exists()
     fieldnames = ['Time', 'Lines', 'Brigade', 'Lat', 'Lon']
     with path.open('a', newline='') as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames, extrasaction='ignore')
         if not data_file_exists:
             writer.writeheader()
         for item in data:
