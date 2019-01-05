@@ -17,6 +17,10 @@ import requests
 from backoff import expo, on_exception
 from ratelimit import RateLimitException, limits
 
+logging.basicConfig(format='%(asctime)s %(levelname)-7s %(thread)-5d %(filename)s:%(lineno)s | %(funcName)s | %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+logging.getLogger().setLevel(logging.DEBUG)
+logging.disable(logging.NOTSET)
+
 log = logging.getLogger(__name__)
 
 
@@ -60,7 +64,11 @@ def _fetch_data(ctx, lines):
         response = requests.get(url, params=data)
         data = response.json()
         click.echo(pprint(data))
-        append_data(data['result'])
+        result = data['result']
+        if isinstance(str, result):
+            log.warning(result)
+            continue
+        append_data(result)
 
 
 def append_data(data):
