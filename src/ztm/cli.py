@@ -65,7 +65,7 @@ def _fetch_data(ctx, lines):
         data = response.json()
         click.echo(pprint(data))
         result = data['result']
-        if isinstance(str, result):
+        if isinstance(result, str):
             log.warning(result)
             continue
         append_data(result)
