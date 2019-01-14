@@ -25,6 +25,7 @@ logging.disable(logging.NOTSET)
 log = logging.getLogger(__name__)
 click_log.basic_config(log)
 
+
 @click.group()
 @click.option('--apikey', default=None)
 @click.option('--sleep', default=10, help='Number of seconds to sleep between fetches')
