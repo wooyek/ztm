@@ -13,6 +13,7 @@ from datetime import datetime
 from pprint import pprint
 
 import click
+import click_log
 import requests
 from backoff import expo, on_exception
 from ratelimit import RateLimitException, limits
@@ -22,7 +23,7 @@ logging.getLogger().setLevel(logging.DEBUG)
 logging.disable(logging.NOTSET)
 
 log = logging.getLogger(__name__)
-
+click_log.basic_config(log)
 
 @click.group()
 @click.option('--apikey', default=None)
@@ -48,7 +49,7 @@ def fetch(ctx, line):
         time.sleep(ctx.obj['sleep'])
 
 
-@on_exception(expo, RateLimitException, max_tries=8)
+@on_exception(expo, (RateLimitException, requests.exceptions.RequestException), max_tries=16)
 @limits(calls=3, period=30)
 def _fetch_data(ctx, lines):
     for item in lines:
