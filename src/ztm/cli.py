@@ -65,6 +65,8 @@ def _fetch_data(ctx, lines):
         url = "https://api.um.warszawa.pl/api/action/busestrams_get/"
         response = requests.get(url, params=data)
         log.debug("response.text: %s", response.text)
+        if not response.text or not response.text.strip():
+            continue
         data = response.json()
         click.echo(pprint(data))
         result = data['result']
