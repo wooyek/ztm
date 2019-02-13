@@ -50,7 +50,7 @@ def fetch(ctx, line):
         time.sleep(ctx.obj['sleep'])
 
 
-@on_exception(expo, (RateLimitException, requests.exceptions.RequestException), max_tries=16)
+@on_exception(expo, (RateLimitException, requests.exceptions.RequestException), max_tries=100)
 @limits(calls=3, period=30)
 def _fetch_data(ctx, lines):
     for item in lines:
@@ -63,7 +63,11 @@ def _fetch_data(ctx, lines):
             'line': item,
         }
         url = "https://api.um.warszawa.pl/api/action/busestrams_get/"
-        response = requests.get(url, params=data)
+        try:
+            response = requests.get(url, params=data)
+        except ConnectionError as ex:
+            log.warning("", exc_info=ex)
+            continue
         log.debug("response.text: %s", response.text)
         if not response.text or not response.text.strip():
             continue
